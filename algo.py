@@ -46,6 +46,7 @@ def nearest_zero(distance):
     index_zeros = [i for i in range(len(distance)) if distance[i] == 0]
     print(index_zeros)
     for i in range(index_zeros[0], len(distance), +1):
+        print(index_zeros[0], len(distance))
         if distance[i] == 0:
             zeros[i] = 0
         else:
@@ -61,3 +62,6 @@ def nearest_zero(distance):
 
 distance = [0, 1 , 4, 9, 0]
 print(nearest_zero(distance))
+
+for i in range(0, 5, +1):
+    print(i)
