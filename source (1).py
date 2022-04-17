@@ -33,3 +33,14 @@ for key, value in D.items():
         deleted.add(key)
 print(D)
 print(deleted)
+
+
+    current_node = node # node0
+    next_node = current_node.next # node1
+    current_node.next = None
+    current_node.prev = next_node
+    while next_node is not None: # node1 node2 node3
+        next_node.prev = next_node.next #node2 #node3 None
+        next_node.next = current_node # node0 #node1 node3
+        current_node = next_node #node1 # node2 node3
+        next_node = next_node.prev #node2 node3 None

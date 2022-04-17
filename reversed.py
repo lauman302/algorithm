@@ -1,12 +1,24 @@
 # Comment it before submitting
-class DoubleConnectedNode:
-    def __init__(self, value, next=None, prev=None):
-        self.value = value
-        self.next = next
-        self.prev = prev
+# class DoubleConnectedNode:  
+#    def __init__(self, value, next=None, prev=None):  
+#        self.value = value  
+#        self.next = next  
+#        self.prev = prev
 
 def solution(node):
-    pass
+    while node is not None:
+        if node.value == 'node0':
+            node.prev, node.next = node.next, None
+            node = node.prev
+        else:
+            next_node = node.prev 
+            node.prev = node.next
+            node.next = next_node
+            if node.prev == None:
+                break
+            node = node.prev
+    return node
+
 
 def test():
     node3 = DoubleConnectedNode("node3")
@@ -24,6 +36,7 @@ def test():
 
     node3.prev = node2
     new_head = solution(node0)
+
     # result is new_head == node3
     # node3.next == node2
     # node2.next == node1 node2.prev == node3
