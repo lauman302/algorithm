@@ -51,3 +51,58 @@ pop
 push 3
 push 3
 '''
+
+class MyQueueSized:
+    def __init__(self, max_size):
+        self.queue = [None] * max_size
+        self.max_size = max_size
+        self.head = 0
+        self.tail = 0
+        self.size = 0
+
+    def is_empty(self):
+        return self.size == 0
+
+    def push(self, elem):
+        if self.size != self.max_size:
+            self.queue[self.tail] = elem
+            self.tail = (self.tail + 1) % self.max_size
+            self.size += 1
+        else:
+            return 'error'
+
+    def pop(self):
+        if self.is_empty():
+            return 'None'
+        elem = self.queue[self.head]
+        self.queue[self.head] = None
+        self.head = (self.head + 1) % self.max_size
+        self.size -= 1
+        return elem
+
+    def peek(self):
+        if self.is_empty():
+            return 'None'
+        elem = self.queue[self.head]
+        return elem
+
+    def size(self):
+        return self.size
+
+if __name__ == '__main__':
+    result = []
+    cnt_commands = int(input())
+    max_size = int(input())
+    queue = MyQueueSized(max_size)
+    for i in range(cnt_commands):
+        command = input().split()
+        if command[0] == 'push':
+            if queue.push(command[1]) == 'error':
+                result.append('error')
+        elif command[0] == 'pop':
+            result.append(queue.pop())
+        elif command[0] == 'peek':
+            result.append(queue.peek())
+        elif command[0] == 'size':
+            result.append(queue.size)
+    print(*result, sep='\n')
