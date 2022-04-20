@@ -33,7 +33,7 @@ class StackMax:
     def get_max(self):
         if self.isEmpty():
             return 'None'
-        return self.max[len(self.items) - 1]    
+        return self.max[len(self.items) - 1]
 
 stack = StackMax()
 cnt_commands = int(input())
