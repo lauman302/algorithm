@@ -32,7 +32,8 @@
 20:33
 создаешь пустой список ( стэк )
 20:35
-и запускаешь цикл, если есть открывающая скобка - кладешь в стэк, в противном случает если попадается скобка закрывающая И при этом стэк не пуст И при этом последняя [-1] соотвествует закрывающей - выкидываешь открывающую из стэка
+и запускаешь цикл, если есть открывающая скобка - кладешь в стэк, в противном случает если попадается скобка закрывающая 
+И при этом стэк не пуст И при этом последняя [-1] соотвествует закрывающей - выкидываешь открывающую из стэка
 20:36
 в конце условие, если ничего не выполнилось то добавить в стэк
 20:37
@@ -40,8 +41,8 @@
 
 '''
 
-def bracket_sequence():
-    pass
+from inspect import stack
+from turtle import st
 
 
 class Stack:
@@ -55,19 +56,26 @@ class Stack:
         self.items.append(item)
 
     def pop(self):
-        if len(self.items) == 0:
-            return False
-        else:
-            del self.items[-1]
+        del self.items[-1]
 
-if __name__ == '__main__':
-    brackets = ['(', '[', '{'}]
-    stack = Stack()
-    line = '{[()]}'
-    # {[()
+    def peek(self):
+        return self.items[-1]
+
+
+def is_correct_bracket_seq(line):
+    brackets = {'(':')','{':'}','[':']'}
     for symbol in line:
         if symbol in brackets:
             stack.push(symbol)
+        elif not stack.isEmpty() and brackets.get(stack.peek()) == symbol:
+            stack.pop()
         else:
-            if (not stack.isEmpty()):
+            stack.push(symbol)
+            break
+    return stack.items == []
+
+if __name__ == '__main__':
+    stack = Stack()
+    line = input()
+    print(is_correct_bracket_seq(line))
 
