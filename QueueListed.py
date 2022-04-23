@@ -51,7 +51,6 @@ class QueueListed:
             return self.value
 
     def __init__(self):
-        self.queue = []
         self.head = self.Node()
         self.tail = self.Node()
         self.size = 0

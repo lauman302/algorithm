@@ -26,4 +26,48 @@
 
 Пример 2
 () = True
+
+33
+создаешь список с открывающими скобками '('  '['  '{'
+20:33
+создаешь пустой список ( стэк )
+20:35
+и запускаешь цикл, если есть открывающая скобка - кладешь в стэк, в противном случает если попадается скобка закрывающая И при этом стэк не пуст И при этом последняя [-1] соотвествует закрывающей - выкидываешь открывающую из стэка
+20:36
+в конце условие, если ничего не выполнилось то добавить в стэк
+20:37
+если к концу цикла стэк не пуст - то False
+
 '''
+
+def bracket_sequence():
+    pass
+
+
+class Stack:
+    def __init__(self):
+        self.items = []
+
+    def isEmpty(self):
+        return self.items == []
+
+    def push(self, item):
+        self.items.append(item)
+
+    def pop(self):
+        if len(self.items) == 0:
+            return False
+        else:
+            del self.items[-1]
+
+if __name__ == '__main__':
+    brackets = ['(', '[', '{'}]
+    stack = Stack()
+    line = '{[()]}'
+    # {[()
+    for symbol in line:
+        if symbol in brackets:
+            stack.push(symbol)
+        else:
+            if (not stack.isEmpty()):
+
