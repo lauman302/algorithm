@@ -12,6 +12,7 @@ class StackMax:
     def __init__(self):
         self.items = []
         self.max = []
+
     def isEmpty(self):
         return self.items == []
 
@@ -35,16 +36,18 @@ class StackMax:
             return 'None'
         return self.max[len(self.items) - 1]
 
-stack = StackMax()
-cnt_commands = int(input())
-result = []
-for i in range(cnt_commands):
-    command = input().split()
-    if command[0] == 'push':
-        stack.push(command[1])
-    if command[0] == 'pop':
-        if stack.pop() == 'error':
-            result.append('error')
-    if command[0] == 'get_max':
-        result.append(stack.get_max())
-print(*result, sep='\n')
+
+if __name__ == '__main__':
+    stack = StackMax()
+    cnt_commands = int(input())
+    result = []
+    for i in range(cnt_commands):
+        command = input().split()
+        if command[0] == 'push':
+            stack.push(command[1])
+        if command[0] == 'pop':
+            if stack.pop() == 'error':
+                result.append('error')
+        if command[0] == 'get_max':
+            result.append(stack.get_max())
+    print(*result, sep='\n')

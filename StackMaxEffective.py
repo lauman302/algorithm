@@ -35,6 +35,7 @@ pop
 get_max
 '''
 
+
 class StackMaxEffective:
     def __init__(self):
         self.items = []
@@ -58,6 +59,7 @@ class StackMaxEffective:
         if self.isEmpty():
             return 'None'
         return self.items[-1][1]
+
 
 if __name__ == '__main__':
     stack = StackMaxEffective()

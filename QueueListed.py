@@ -41,38 +41,52 @@ get
 get
 '''
 
-from platform import node
-
 
 class QueueListed:
     class Node:
         def __init__(self, value=None, next=None):
             self.value = value
             self.next = next
-        
+
         def __str__(self):
             return self.value
 
     def __init__(self):
         self.head = self.Node()
+        self.tail = self.Node()
         self.size = 0
 
-    def isEmpty(self):
+    def is_empty(self):
         return self.size == 0
     
     def get(self):
-        if self.isEmpty():
-            return 'erorr'
-        remove = self.head.next
-        self.head.next = self.head.next.next
+        if self.is_empty():
+            return 'error'
+        if self.size == 1:
+            item = self.head
+            self.head = self.Node()
+            self.tail = self.Node()
+            self.size -= 1
+            return item
+        if self.size == 2:
+            item = self.head
+            self.head = self.tail
+            self.size -= 1
+            return item
+        item = self.head
+        self.head = self.tail.next.next
+        self.tail.next = self.head
         self.size -= 1
+        return item
 
-        return remove.value
-
-    def put(self, item):
-        node = self.Node(item)
-        node.next = self.head.next
-        self.head.next = node
+    def put(self, value):
+        if self.size == 0:
+            self.head = self.Node(value)
+            self.tail = self.head
+        else:
+            self.tail.next = self.Node(value)
+            self.tail.next.next = self.head
+            self.tail = self.tail.next
         self.size += 1
 
     def get_size(self):
@@ -92,3 +106,16 @@ if __name__ == '__main__':
         elif command[0] == 'size':
             result.append(queue.get_size())
     print(*result, sep='\n')
+
+
+    
+    def get(self):
+        if self.is_empty():
+            return 'error'
+
+
+    def put(self, x):
+
+
+    def __str__(self):
+        return self.value
