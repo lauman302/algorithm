@@ -92,6 +92,7 @@ class QueueListed:
     def get_size(self):
         return self.size
 
+
 if __name__ == '__main__':
     result = []
     cnt_commands = int(input())
@@ -106,16 +107,3 @@ if __name__ == '__main__':
         elif command[0] == 'size':
             result.append(queue.get_size())
     print(*result, sep='\n')
-
-
-    
-    def get(self):
-        if self.is_empty():
-            return 'error'
-
-
-    def put(self, x):
-
-
-    def __str__(self):
-        return self.value
