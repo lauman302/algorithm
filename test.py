@@ -72,3 +72,12 @@ if __name__ == "__main__":
         remove = stack.pop()
         print(f"Pop: {remove}")
     print(f"Stack: {stack}")
+
+
+def mysum(L):
+    if not L:
+        return 0
+    else:
+        return L[0] + mysum(L[1:]) # Вызывает себя саму
+        
+print(mysum([1, 2, 3, 4, 5]))
